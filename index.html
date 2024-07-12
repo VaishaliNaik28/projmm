@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title> MM App by Vaishali Naik </title>
+	<style>
+	*{font-size:3vw;font-weight:100;}
+	h1
+	{
+		background-color:black;
+		color:white;
+		width:80%;
+		font-size:3vw;
+		border-radius:2vw;
+		margin-top:1vw;}
+	input[type="submit"]
+	{
+	background-color:pink;
+	font-size:2vw;
+	border:0.2vw solid black;}
+	body
+		{background-image:url(img.JPG);
+		height:100%; 
+		background-position:center;
+  		background-repeat: no-repeat;
+  		background-size: cover;}
+	</style>
+</head>
+<body>
+	<center>
+		<h1> Motivational Msg App </h1>
+		<br/>
+		<form onsubmit="show()">
+		<input type="submit" value="Get Msg"/>
+		<h2 id="msg"/>
+		<h2 id="auth"/>
+		</form>
+
+		<script>
+			function show()
+			{
+				event.preventDefault();
+				let msg = document.getElementById("msg");
+				let auth = document.getElementById("auth");
+				let url = "https://api.quotable.io/random";
+				fetch(url)
+				.then(res => res.json())
+				.then(data => {
+					let quote = data.content;
+					let author = data.author;
+					msg.innerHTML = quote;
+					auth.innerHTML = author;
+					})
+				.catch(err => alert("issues" + err));
+			}
+		</script>
+	</center>
+</body>
+</html>
